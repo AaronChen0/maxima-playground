@@ -1,0 +1,14 @@
+diophantine_source_dir:"/home/aaron/maxima-package/diophantine/"$
+push(sconcat(diophantine_source_dir, "$$$.mac"), file_search_maxima)$
+push(sconcat(diophantine_source_dir, "$$$.lisp"), file_search_lisp)$
+
+setup_autoload("~/.maxima/qfactor.lisp", qfactor);
+setup_autoload("~/.maxima/primepi.lisp", primepi, primesum, prime);
+setup_autoload("~/.maxima/part.lisp", numpart);
+
+primep_number_of_tests:1;
+
+mysubs(const,a,b):=block([fpprec:b+10],str:printf(false,"~h",bfloat(const)),
+  pos:1+sposition(".",str),substring(str,pos+a,pos+b));
+
+mypi(a,b):=block([],?floor(?mod(?get\-pi(b+10),10^(b+10-a)),10^10));
